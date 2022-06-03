@@ -18,7 +18,8 @@ const app = express();
 const parser = json();
 
 const addControlAllowHeader = (request: Request, response: Response, next: NextFunction) => {
-  response.header("Access-Control-Allow-Heasers", '*')
+  response.header("Access-Control-Allow-Headers", '*')
+  response.header("Access-Control-Allow-Origin", '*')
   next();
 }
 
