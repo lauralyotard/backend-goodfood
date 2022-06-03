@@ -7,6 +7,8 @@ import { findUserByEmail, signup, login, changePassword, verifyPassword } from '
 import { getAllPizzas } from './local-restaurant';
 import sequelize from './util/database';
 
+const cors = require('cors');
+
 // Constants
 const PORT = 8000;
 const HOST = '0.0.0.0';
@@ -14,6 +16,8 @@ const HOST = '0.0.0.0';
 // App handlers
 const app = express();
 const parser = json();
+
+app.use(cors())
 
 app.get("/", (req: any, res: any) => {
   res.status(200).send("hello world!");
