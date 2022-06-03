@@ -8,7 +8,7 @@ export async function getAllPizzas(req: Request, res: Response, next: NextFuncti
     try {
         const { id } = req.params;
         const restaurant = await Restaurant.findOne({ where: { id }, include: [{ model: Pizza, as: 'pizzas' }] });
-        return res.status(200).json({
+        return res.header('Access-Control-Allow-Headers', '*').header('Access-Control-Allow-Origin', '*').status(200).json({
             count: restaurant.pizzas ? restaurant.pizzas.length : 0,
             data: restaurant.pizzas
         });
