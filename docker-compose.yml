@@ -1,0 +1,31 @@
+version: '3.8'
+
+services: 
+  node_backend: 
+    container_name: node_backend
+    image: node-test:1.0.0
+    build:
+      context: ./goodfood
+    ports:
+      - '8000:8000'
+    environment:
+    - PGUSER=laura
+    - PGPASSWORD=12345
+    - PGDATABASE=goodfood
+    - PGHOST=db
+    depends_on: 
+      - db
+  db:
+    container_name: db
+    image: 'postgres:12'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_USER=laura
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=goodfood
+    volumes:
+      - pgdata1:/var/lib/postgresql/data
+
+volumes:
+  pgdata1: {}
