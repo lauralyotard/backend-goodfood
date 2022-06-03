@@ -3,11 +3,11 @@ import { json } from "body-parser";
 
 import { initDb } from "./initialization";
 
+import { NextFunction, Request, Response } from "express";
+
 import { findUserByEmail, signup, login, changePassword, verifyPassword } from './local-user';
 import { getAllPizzas } from './local-restaurant';
 import sequelize from './util/database';
-
-const cors = require('cors');
 
 // Constants
 const PORT = 8000;
@@ -17,7 +17,10 @@ const HOST = '0.0.0.0';
 const app = express();
 const parser = json();
 
-app.use(cors())
+const addControlAllowHeader = (request: Request, response: Response, next: NextFunction) => {
+  response.header("Access-Control-Allow-Heasers", '*')
+  next();
+}
 
 app.get("/", (req: any, res: any) => {
   res.status(200).send("hello world!");
@@ -38,6 +41,8 @@ app.put('/users/password', parser, changePassword);
 app.post('/users/verify', parser, verifyPassword);
 
 app.get('/restaurant/:id/pizzas', parser, getAllPizzas);
+
+app.use(addControlAllowHeader);
 
 // app.listen(PORT, HOST);
 // console.log(`Running on http://${HOST}:${PORT}`);
