@@ -17,6 +17,9 @@ const HOST = '0.0.0.0';
 const app = express();
 const parser = json();
 
+const dotenv = require("dotenv")
+dotenv.config()
+
 const addControlAllowHeader = (request: Request, response: Response, next: NextFunction) => {
   response.header("Access-Control-Allow-Headers", '*')
   response.header("Access-Control-Allow-Origin", '*')
@@ -24,7 +27,7 @@ const addControlAllowHeader = (request: Request, response: Response, next: NextF
 }
 
 app.get("/", (req: any, res: any) => {
-  res.status(200).send("hello world!");
+  res.status(200).send("hello pizza world!");
 });
 
 app.get("/ping", (req: any, res: any) => {

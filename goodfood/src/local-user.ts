@@ -21,7 +21,7 @@ export async function findUserByEmail(req: Request, res: Response, next: NextFun
             });
             return;
         }
-        return res.status(200).json(user);
+        return res.header('Access-Control-Allow-Headers', '*').header('Access-Control-Allow-Origin', '*').status(200).json(user);
     }
     catch (ex) {
         throw ex;

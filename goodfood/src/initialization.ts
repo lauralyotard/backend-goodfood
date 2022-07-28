@@ -3,6 +3,7 @@ import { Order } from './models/orders';
 import { Pizza } from './models/pizzas';
 import { Restaurant } from './models/restaurants';
 import sequelize from './util/database';
+import {User} from './models/users';
 
 const PORT = 8000;
 const HOST = '0.0.0.0';
@@ -27,7 +28,7 @@ export async function initDb(app: any) {
                     name: "4 Fromages",
                     description: "Retrouvez la célèbre 4 Fromages",
                     base: "BLANCHE",
-                    image: "",
+                    image: "pizza1",
                     price: 9.5,
                     ingredients: [
                         {
@@ -45,7 +46,7 @@ export async function initDb(app: any) {
                     name: "Margarita",
                     description: "La classique la plus classique qui existe",
                     base: "ROUGE",
-                    image: "",
+                    image: "pizza2",
                     price: 7.0,
                     ingredients: [
                         {
@@ -53,6 +54,39 @@ export async function initDb(app: any) {
                         },
                         {
                             name: "Persil"
+                        }
+                    ]
+                },
+                {
+                    name: "Reine",
+                    description: "Une incontournable",
+                    base: "ROUGE",
+                    image: "pizza3",
+                    price: 9.0,
+                    ingredients: [
+                        {
+                            name: "Champignons"
+                        },
+                        {
+                            name: "Jambon"
+                        }
+                    ]
+                },
+                {
+                    name: "Bolognaise",
+                    description: "Une incontournable",
+                    base: "ROUGE",
+                    image: "pizza4",
+                    price: 10.0,
+                    ingredients: [
+                        {
+                            name: "Carottes"
+                        },
+                        {
+                            name: "Viande hachée"
+                        },
+                        {
+                            name: "Tomates"
                         }
                     ]
                 }
@@ -83,6 +117,22 @@ export async function initDb(app: any) {
         });
 
         await pizza.addOrder(order, { through: { quantity: 2 } });
+
+        await User.create({
+            name: "Camille",
+            lastname: "Dupont",
+            phone: "+330791872635",
+            email: "contact@goodfood.fr",
+            password: "pws01"
+        });
+
+        await User.create({
+            name: "Tom",
+            lastname: "Dufour",
+            phone: "+330394852649",
+            email: "contact2@goodfood.fr",
+            password: "pws02"
+        });
 
         app.listen(PORT, HOST);
         console.log(`Running on http://${HOST}:${PORT}`);

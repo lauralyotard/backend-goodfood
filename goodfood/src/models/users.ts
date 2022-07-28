@@ -13,6 +13,24 @@ export const User = db.define('users', {
     allowNull: false,
     primaryKey: true,
   },
+  name: {
+    type: Sequelize.STRING,
+    notEmpty: true,
+    notNull: true,
+    unique: false
+  },
+  lastname: {
+    type: Sequelize.STRING,
+    notEmpty: true,
+    notNull: true,
+    unique: false
+  },
+  phone: {
+    type: Sequelize.STRING,
+    notEmpty: true,
+    notNull: true,
+    unique: false
+  },
   email: {
     type: Sequelize.STRING,
     set: function (val: string) {
