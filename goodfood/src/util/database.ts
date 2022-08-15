@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 const sequelizeInstance = new Sequelize(
     process.env.PGDATABASE,
     process.env.PGUSER,

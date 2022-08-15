@@ -38,7 +38,7 @@ app.get("/healthy", (req: any, res: any) => {
   res.status(200).send("healthy");
 });
 
-app.get('/users', parser, findUserByEmail);
+app.get('/user/:name', parser, findUserByEmail);
 app.post('/users/signup', parser, signup);
 app.post('/users/login', parser, login);
 app.put('/users/password', parser, changePassword);

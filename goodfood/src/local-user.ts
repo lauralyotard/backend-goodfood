@@ -7,17 +7,17 @@ const jwt = require("jsonwebtoken");
 
 export async function findUserByEmail(req: Request, res: Response, next: NextFunction) {
     try {
-        const { email } = req.query;
-        if (!email) {
+        const { name } = req.params;
+        if (!name) {
             res.status(400).send({
                 message: 'Please provide all the fields.'
             });
             return;
         }
-        const user = await User.findOne({ where: { email } });
+        const user = await User.findOne({ where: { name } });
         if (!user) {
             res.status(404).send({
-                message: `User ${email} not found`
+                message: `User ${name} not found`
             });
             return;
         }

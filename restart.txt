@@ -1,0 +1,4 @@
+docker-compose rm
+docker volume rm backend-goodfood_pgdata1
+docker-compose build
+docker-compose up db
